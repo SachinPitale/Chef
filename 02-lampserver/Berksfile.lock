@@ -1,0 +1,7 @@
+DEPENDENCIES
+  lampserver
+    path: .
+    metadata: true
+
+GRAPH
+  lampserver (0.1.0)
