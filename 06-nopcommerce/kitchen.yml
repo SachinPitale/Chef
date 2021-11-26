@@ -1,0 +1,31 @@
+---
+driver:
+  name: azurerm
+  subscription_id: "subscription_id"
+  location: "eastus"
+  machine_size: Standard_B1s
+  username: devadmin
+  password: devitgroup@123
+  destroy_resource_group_contents: true
+
+provisioner:
+  name: chef_zero
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-18.04
+    driver:
+      image_urn: Canonical:UbuntuServer:18.04-LTS:latest
+
+
+suites:
+  - name: default
+    run_list:
+      - recipe[nopcommerce::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
